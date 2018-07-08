@@ -1,5 +1,10 @@
 Evergrowing high level list of remaining work:
 
+Developer changes
+    - switch over to Typescript (?)
+    - setup testing framework
+    - write some tests
+
 DB
     - create and store user information
         - user id, name, and role (approver, case worker, volunteer)
