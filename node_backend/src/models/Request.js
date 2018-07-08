@@ -17,7 +17,10 @@ var Request = new Schema({
   items: {
     type: String
   },
-
+  status: {
+    // TODO: status should be enum: pending, approved, rejected, fulfilled
+    type: String
+  }
 },{
     collection: 'requests'
 });

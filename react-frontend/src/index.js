@@ -4,6 +4,8 @@
 
     import App from './App';
     import CreateRequest from './components/CreateRequest';
+    import RequestList from './components/RequestList';
+
     import IndexItem from './components/IndexItem';
 
 
@@ -16,6 +18,10 @@
             <Route exact path='/' component={App} />
             {/* Route to create a new request */}
             <Route path='/request' component={CreateRequest} />
+
+            {/* Route to view request list */}
+            <Route path='/request-list' component={RequestList} />
+
             {/* Route to view requests (currently just some boilerplate code) */}
             <Route path='/index' component={IndexItem} />
         </div>

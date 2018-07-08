@@ -9,7 +9,9 @@
         axios.post('http://localhost:4200/items/add/post', {
             clientId: data.clientId,
             gender: data.gender,
-            items: data.items
+            items: data.items,
+            // all created requests have initial status of pending
+            status: 'PENDING'
       })
       .then(function (response) {
           console.log(response);
