@@ -20,3 +20,7 @@ Install nodemon (`npm install -g nodemon`) to get hot swapping for node_backend 
 react-frontend should already have hot swapping enabled from create-react-app setup.
 
 Project started using tutorial at https://appdividend.com/2017/06/28/mern-stack-tutorial/
+
+
+Description of code & important files:
+    TODO

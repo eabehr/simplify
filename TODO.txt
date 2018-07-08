@@ -2,6 +2,7 @@ Evergrowing high level list of remaining work:
 
 Developer changes
     - switch over to Typescript (?)
+    - rename Request to something else because "request" has too many meanings within app
     - setup testing framework
     - write some tests
 
