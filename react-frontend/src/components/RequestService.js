@@ -6,7 +6,7 @@
     class RequestService {
 
       sendData(data) {
-        axios.post('http://localhost:4200/items/add/post', {
+        axios.post('http://localhost:4200/requests/add/post', {
             clientId: data.clientId,
             gender: data.gender,
             items: data.items,

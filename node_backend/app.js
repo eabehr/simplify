@@ -8,6 +8,7 @@
     // Get db credentials
     var secrets = require('./secrets');
     var dbcreds = secrets.dbcreds;
+    // format of dbcreds: 'mongodb://<username>:<pw>@<mlaburl>'
 
     // Mongoose connection with mongodb
     mongoose.Promise = require('bluebird');
@@ -30,7 +31,8 @@
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
 
-    app.use('/items', requestRouter);
+    // Endpoint for CRUD functions on Requests for items
+    app.use('/requests', requestRouter);
 
     // Start the server
     app.listen(port, function(){
