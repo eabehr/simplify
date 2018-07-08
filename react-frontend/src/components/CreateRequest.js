@@ -1,4 +1,5 @@
   import React, { Component } from 'react';
+  import {Link} from 'react-router-dom';
   import RequestService from './RequestService';
 
   /**
@@ -59,6 +60,8 @@
 
               <input type="submit" value="Submit" className="btn btn-primary"/>
             </form>
+            <br/><br/>
+            <Link to={"/"} className="btn btn-primary">Back to Home</Link>
         </div>
         );
       }
