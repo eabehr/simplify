@@ -5,9 +5,7 @@
     import App from './App';
     import CreateRequest from './components/CreateRequest';
     import RequestList from './components/RequestList';
-
-    import IndexItem from './components/IndexItem';
-
+    import RequestDetail from './components/RequestDetail';
 
     /**
      * Define routes for app
@@ -22,8 +20,9 @@
             {/* Route to view request list */}
             <Route path='/request-list' component={RequestList} />
 
-            {/* Route to view requests (currently just some boilerplate code) */}
-            <Route path='/index' component={IndexItem} />
+            {/* Route to view request detail */}
+            <Route path='/request-detail/:id' component={RequestDetail} />
+            
         </div>
     </Router>,
     document.getElementById('root')
