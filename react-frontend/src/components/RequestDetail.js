@@ -32,6 +32,8 @@ class RequestDetail extends Component {
                 Requested Items
                 <br/>
                 {this.state.data.items}
+                <br/><br/>
+                <Link to={"/request-list"} className="btn btn-primary">Back to Request List</Link>
             </div>
         );
     }
