@@ -5,6 +5,8 @@ Developer changes
     - rename Request to something else because "request" has too many meanings within app
     - setup testing framework
     - write some tests
+    - change all the single quotes to double because having both is driving me crazy
+    - add logging
 
 DB
     - create and store user information
@@ -19,20 +21,27 @@ Request Creation
     - add field for comments
 
 Request View for Approver
-    - view list of all requests
-    - ability to approve or rejest requests, and notifys requester
+    - notify requester when status is changed
+    - some UI treatment when button is selected
+    - filter requests by status - WAITING, APPROVED, REJECTED, FULFILLED
     - [lower priority] ability to approve/reject items within request
-    - [lower priority] filter requests by status - WAITING, APPROVED, REJECTED, FULFILLED
-    - [lower priority] ability to add comments
+    - ability to add comments/feed
 
 Request View for Requester
     - view lists of requests user has made
     - receive notifictions when approver makes change
-
+    - ability to add comments/feed
 
 Login System/Authorization
     - need login system that prevents users from reusing passwords used in DESC internal systems
 
+Notifications
+    - in app notifications when messages are added or statuses are changed
+    - email integration & notifications with link to open app
+
+Wishlist
+    - add another status of WISHLIST for items that cannot be fulfilled anytime soon, but don't want to reject outright
+
 [Not MVP] Volunteer View
-    - view all approbed requests that need to be fulfilled
+    - view all approved requests that need to be fulfilled
     - ability to mark request as fulfilled
