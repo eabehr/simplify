@@ -14,19 +14,20 @@ requestRouter.route('/add/post').post(function (req, res) {
   debugger;
   console.log(req.body);
   var request = new Request(req.body);
-      request.save()
+  console.log("TYPE: "+ typeof(request));
+  request.save()
     .then(request => {
-    res.json('request added successfully');
+      res.json('request added successfully');
     })
     .catch(err => {
-    res.status(400).send("unable to save to database");
+      res.status(400).send("unable to save to database");
     });
 });
 
 // Define GET all requests route
 requestRouter.route('/').get(function (req, res) {
-  Request.find(function (err, requests){
-    if(err){
+  Request.find(function (err, requests) {
+    if (err) {
       console.log(err);
     }
     else {
@@ -38,8 +39,32 @@ requestRouter.route('/').get(function (req, res) {
 // Define GET single request route
 requestRouter.route('/:id').get(function (req, res) {
   var id = req.params.id;
-  Request.findById(id, function (err, item){
-      res.json(item);
+  Request.findById(id, function (err, request) {
+    res.json(request);
+  });
+});
+
+// Define UPDATE route for one request
+// /update/:id ?
+requestRouter.route('/update/:id').post(function (req, res) {
+  var id = req.params.id;
+  Request.findById(id, function (err, request) {
+    if (!request) {
+      return next(new Error('Could not find request'));
+    } else { 
+      console.log("TYPE: "+ typeof(request));
+      console.log("reuqest : " + request.status);
+      console.log("**** " + req.body.status);
+      request.status = req.body.status;
+      //request = req.body;
+
+      request.save().then(request => {
+        res.json('Update complete');
+      })
+      .catch(err => {
+        res.status(400).send("unable to update the database");
+      });
+    }
   });
 });
 
