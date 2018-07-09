@@ -1,20 +1,19 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import RequestService from './RequestService';
+import React, { Component } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import RequestService from "./RequestService";
 
 /**
  * Detail view of a single request
  * 
  * TODO:
- * - add ability to approve or reject request
  * - add area for messaging between requester and approver
  */
 class RequestDetail extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { data: '' };
+        this.state = { data: "" };
         this.requestService = new RequestService();
         this.approveRequest = this.approveRequest.bind(this);
         this.rejectRequest = this.rejectRequest.bind(this);
@@ -22,7 +21,7 @@ class RequestDetail extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4200/requests/' + this.props.match.params.id)
+        axios.get("http://localhost:4200/requests/" + this.props.match.params.id)
             .then(response => {
                 this.setState({ data: response.data });
             })
@@ -31,15 +30,20 @@ class RequestDetail extends Component {
             })
     }
 
+    /**
+     * Set status of request to Approved
+     */
     approveRequest() {
-        // this.state.value? this.state.data?
         this.state.data.status = "APPROVED"; // TODO: store as enum
         this.requestService.updateData(this.state.data, this.props.match.params.id);
-        console.log("appoved");
     }
 
+    /**
+     * Set status of request to Denied
+     */
     rejectRequest() {
-        console.log("deny");
+        this.state.data.status = "DENIED"; // TODO: store as enum
+        this.requestService.updateData(this.state.data, this.props.match.params.id);
     }
 
     render() {
