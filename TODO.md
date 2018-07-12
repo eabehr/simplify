@@ -24,6 +24,7 @@
     - some UI treatment when button is selected
     - [lower priority] ability to approve/reject items within request
     - ability to add comments/feed
+    - [not mvp] sorting option - sort by urgency, requester
 
 ### Request View for Requester
     - view lists of requests user has made
@@ -31,7 +32,7 @@
     - ability to add comments/feed
 
 ### Login System/Authorization
-    - need login system that prevents users from reusing passwords used in DESC internal systems
+    - need login system that prevents users from reusing passwords used in internal systems
 
 ### Notifications
     - in app notifications when messages are added or statuses are changed

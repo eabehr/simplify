@@ -1,4 +1,4 @@
-MERN app for DESC Simplify project
+MERN app to manage resource or donation requests
 
 To run front end:
     cd react-frontend
