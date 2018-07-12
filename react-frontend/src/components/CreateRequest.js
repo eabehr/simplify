@@ -8,7 +8,7 @@
   class CreateRequest extends Component {
     constructor(props) {
         super(props);
-        this.state = {clientId: "", gender: "unspecified", items: "", urgency: "standard"};
+        this.state = {clientId: "", gender: "unspecified", items: "", urgency: "standard", notes: ""};
         this.addRequestService = new RequestService();
 
         this.handleFormChange = this.handleFormChange.bind(this);
@@ -35,13 +35,13 @@
             Create Request:
             <br/> <br/>
               <label>
-                  Client id:
-                  <input type="text" name="clientId" value={this.state.value} onChange={this.handleFormChange} className="form-control"/>
+                  Client id (required):
+                  <input required type="text" name="clientId" value={this.state.value} onChange={this.handleFormChange} className="form-control"/>
               </label>
               <br/><br/>
 
               <label>
-                  Client Gender:
+                  Client Gender (optional):
                   <br/>
                   <select name="gender" onChange={this.handleFormChange}>
                       <option value="unspecified">unspecified</option>
@@ -53,19 +53,26 @@
               <br/><br/>
 
               <label>
-                  What items does your client need?
-                  <textarea name="items" value={this.state.value} onChange={this.handleFormChange} cols="40" rows="5"/> 
+                  What items does your client need? (required)<br/>
+                  Please include sizes if applicable<br/>
+                  <textarea required name="items" value={this.state.value} onChange={this.handleFormChange} cols="40" rows="5"/> 
               </label>
               <br/><br/>
 
               <label>
-                  Urgency
+                  Urgency (optional):
                   <br/>
                   <select name="urgency" onChange={this.handleFormChange}>
                       <option value="standard">standard</option>
                       <option value="urgent">urgent</option>
                       <option value="life-changing">life-changing</option>
                   </select>
+              </label>
+              <br/><br/>
+
+              <label>
+                  Notes (optional): <br/>
+                  <textarea required name="notes" value={this.state.value} onChange={this.handleFormChange} cols="40" rows="2"/> 
               </label>
               <br/><br/>
 
