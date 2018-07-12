@@ -11,10 +11,7 @@ var Request = require("../models/Request");
 
 // Define create request route
 requestRouter.route("/add/post").post(function (req, res) {
-  debugger;
-  console.log(req.body);
   var request = new Request(req.body);
-  console.log("TYPE: "+ typeof(request));
   request.save()
     .then(request => {
       res.json("request added successfully");
