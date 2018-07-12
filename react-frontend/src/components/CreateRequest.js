@@ -1,6 +1,6 @@
-  import React, { Component } from 'react';
-  import {Link} from 'react-router-dom';
-  import RequestService from './RequestService';
+  import React, { Component } from "react";
+  import {Link} from "react-router-dom";
+  import RequestService from "./RequestService";
 
   /**
    * Define the form for creating a Request for items for a client
@@ -8,7 +8,7 @@
   class CreateRequest extends Component {
     constructor(props) {
         super(props);
-        this.state = {clientId: '', gender: '', items: ''};
+        this.state = {clientId: "", gender: "", items: ""};
         this.addRequestService = new RequestService();
 
         this.handleFormChange = this.handleFormChange.bind(this);
@@ -19,7 +19,7 @@
       handleSubmit(event) { 
         event.preventDefault();
         this.addRequestService.sendData(this.state);
-        this.props.history.push('/');
+        this.props.history.push("/");
       }
 
       // Set values in component state every time fields of form change

@@ -3,7 +3,7 @@
  * Anytime new fields are added to the request, this schema must be updated
  */
 
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 // Define collection and schema for Request
@@ -22,7 +22,7 @@ var Request = new Schema({
     type: String
   }
 },{
-    collection: 'requests'
+    collection: "requests"
 });
 
-module.exports = mongoose.model('Request', Request);
+module.exports = mongoose.model("Request", Request);

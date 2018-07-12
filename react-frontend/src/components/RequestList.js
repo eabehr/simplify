@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import RequestService from './RequestService';
-import RequestListItem from './RequestListItem';
+import React, { Component } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import RequestService from "./RequestService";
+import RequestListItem from "./RequestListItem";
 
 /**
  * List of Requests for User
@@ -12,7 +12,7 @@ class RequestList extends Component {
         // set status of user
         super(props);
         this.state = {
-            requests: ''
+            requests: ""
         };
         this.state.status = "PENDING";
         this.requestService = new RequestService();
@@ -21,7 +21,7 @@ class RequestList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4200/requests')
+        axios.get("http://localhost:4200/requests")
             .then(response => {
                 this.setState({ requests: response.data });
             })
@@ -55,7 +55,7 @@ class RequestList extends Component {
      */
     updateStatus(_status) {
         this.state.status = _status;
-        // TODO: component should be updating automatically when state changes and forceUpdate shouldn't be needed
+        // TODO: component should be updating automatically when state changes and forceUpdate shouldn"t be needed
         // I am definitely doing something wrong here - should fix
         this.forceUpdate();
     }

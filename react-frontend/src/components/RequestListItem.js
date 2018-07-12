@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-import RequestService from './RequestService';
-import { Router, Route, browserHistory, IndexRoute} from 'react-router'
+import React, { Component } from "react";
+import {Link} from "react-router-dom";
+import RequestService from "./RequestService";
+import { Router, Route, browserHistory, IndexRoute} from "react-router"
 
 /**
  * A single request item in the list of all requests
