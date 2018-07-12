@@ -8,7 +8,7 @@
   class CreateRequest extends Component {
     constructor(props) {
         super(props);
-        this.state = {clientId: "", gender: "", items: ""};
+        this.state = {clientId: "", gender: "unspecified", items: "", urgency: "standard"};
         this.addRequestService = new RequestService();
 
         this.handleFormChange = this.handleFormChange.bind(this);
@@ -54,7 +54,18 @@
 
               <label>
                   What items does your client need?
-                  <input type="text" name="items" value={this.state.value} onChange={this.handleFormChange} className="form-control"/> 
+                  <textarea name="items" value={this.state.value} onChange={this.handleFormChange} cols="40" rows="5"/> 
+              </label>
+              <br/><br/>
+
+              <label>
+                  Urgency
+                  <br/>
+                  <select name="urgency" onChange={this.handleFormChange}>
+                      <option value="standard">standard</option>
+                      <option value="urgent">urgent</option>
+                      <option value="life-changing">life-changing</option>
+                  </select>
               </label>
               <br/><br/>
 
