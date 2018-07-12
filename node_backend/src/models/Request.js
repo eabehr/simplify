@@ -33,6 +33,10 @@ var Request = new Schema({
   // Optional notes
   notes: {
     type: String
+  },
+  // Creation date
+  date: {
+    type: Date
   }
 },{
     collection: "requests"

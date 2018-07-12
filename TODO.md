@@ -22,6 +22,7 @@
 ### Request View for Approver
     - notify requester when status is changed
     - some UI treatment when button is selected
+    - sort by most recent
     - [lower priority] ability to approve/reject items within request
     - ability to add comments/feed
     - [not mvp] sorting option - sort by urgency, requester

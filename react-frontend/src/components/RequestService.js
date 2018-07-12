@@ -16,6 +16,7 @@ class RequestService {
       items: data.items,
       urgency: data.urgency,
       notes: data.notes,
+      date: new Date(),
       // all created requests have initial status of pending
       status: "PENDING"
     })
