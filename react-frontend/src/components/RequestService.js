@@ -14,6 +14,7 @@ class RequestService {
       clientId: data.clientId,
       gender: data.gender,
       items: data.items,
+      urgency: data.urgency,
       // all created requests have initial status of pending
       status: "PENDING"
     })

@@ -20,6 +20,10 @@ var Request = new Schema({
   status: {
     // TODO: status should be enum: pending, approved, rejected, fulfilled
     type: String
+  },
+  urgency: {
+    // TODO: should be enum
+    type: String
   }
 },{
     collection: "requests"
