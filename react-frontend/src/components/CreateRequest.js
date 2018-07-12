@@ -72,14 +72,13 @@
 
               <label>
                   Notes (optional): <br/>
-                  <textarea required name="notes" value={this.state.value} onChange={this.handleFormChange} cols="40" rows="2"/> 
+                  <textarea name="notes" value={this.state.value} onChange={this.handleFormChange} cols="40" rows="2"/> 
               </label>
               <br/><br/>
 
               <input type="submit" value="Submit" className="btn btn-primary"/>
+              <Link to={"/"} className="btn btn-primary">Cancel</Link>
             </form>
-            <br/><br/>
-            <Link to={"/"} className="btn btn-primary">Back to Home</Link>
         </div>
         );
       }

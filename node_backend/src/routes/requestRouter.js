@@ -59,6 +59,8 @@ requestRouter.route("/update/:id").post(function (req, res) {
       request.clientId = req.body.clientId;
       request.gender = req.body.gender;
       request.items = req.body.items;
+      request.urgency = req.body.urgency;
+      request.notes = req.body.notes;
 
       request.save().then(request => {
         res.json("Update complete");
