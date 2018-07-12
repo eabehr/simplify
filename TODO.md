@@ -5,7 +5,6 @@
     - rename Request to something else because "request" has too many meanings within app
     - setup testing framework
     - write some tests
-    - change all the single quotes to double because having both is driving me crazy
     - add logging
 
 ### DB
@@ -23,7 +22,6 @@
 ### Request View for Approver
     - notify requester when status is changed
     - some UI treatment when button is selected
-    - filter requests by status - WAITING, APPROVED, REJECTED, FULFILLED
     - [lower priority] ability to approve/reject items within request
     - ability to add comments/feed
 
