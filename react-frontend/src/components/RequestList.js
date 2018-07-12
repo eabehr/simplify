@@ -75,6 +75,7 @@ class RequestList extends Component {
                             {/* todo: make bold with bootstrap or css instead of html */}
                             <td><b>Status</b></td>
                             <td><b>Requested Items</b></td>
+                            <td><b>Urgency</b></td>
                         </tr>
                     </thead>
                     <tbody>

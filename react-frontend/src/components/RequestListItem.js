@@ -24,6 +24,9 @@ class RequestListItem extends Component {
                     {this.props.data.items}
                 </td>
                 <td>
+                    {this.props.data.urgency}
+                </td>
+                <td>
                     <Link to={"/request-detail/" + this.props.data._id} className="btn btn-primary">View Request</Link>
                 </td>
             </tr>
