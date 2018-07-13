@@ -49,9 +49,13 @@ class RequestDetail extends Component {
     render() {
         return (
             <div>
-                Requested Items
-                <br />
+                <b>Requested Items:</b>
+                <br /><br />
                 {this.state.data.items}
+                <br /><br /><br />
+                <b>Notes:</b>
+                <br /><br />
+                {this.state.data.notes}
                 <br /><br />
                 <input type="button" value="Approve" onClick={this.approveRequest} className="btn btn-primary" />
                 <br /><br />
