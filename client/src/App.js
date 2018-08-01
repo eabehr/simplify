@@ -18,7 +18,8 @@
           <Link to={"/request-list/"} className="btn btn-primary">View Requests</Link>
           <br/><br/>
           <Link to={"/request/"} className="btn btn-primary">Create New Request</Link>
-          
+          <br/><br/>
+          <Link to={"/request-items/"} className="btn btn-primary">Request Items</Link>
 
 
         </div>
