@@ -28,7 +28,15 @@ module.exports = {
             "type" : "shirt",
             "attributes" : {
                 "gender" : ["male" , "female"],
-                "size" : ["small", "medium", "large"]
+                "size" : ["small", "medium", "large"],
+                "style" : ["casual", "dress"]
+            }
+        },
+        {
+            "type" : "pants",
+            "attributes" : {
+                "gender" : ["male" , "female"],
+                "size" : ["0", "2", "4"]
             }
         }
 

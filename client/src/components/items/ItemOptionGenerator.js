@@ -1,4 +1,5 @@
 class ItemOptionGenerator {
+    // rename to ItemOptionUtility
     constructor() {
         this.state = {
             allItems : require("./AvailableItems")
@@ -25,19 +26,21 @@ class ItemOptionGenerator {
         return itemsInCategory;
     }
 
-    isItemGendered(category, item) {
-
+    /**
+     * Get attributes for item in category
+     */
+    getItemAttributes(category, item) {
+        var itemData = this.state.allItems[category];
+        // var itemsAttributes = [];
+        // getting syntax errors for for each loop?
+        for (var i = 0; i < itemData.length; i++) {
+            if (itemData[i].type == item) {
+                return itemData[i].attributes;
+            }
+        }
+        return null;
     }
 
-    isItemSized(category, item) {
-
-    }
-
-    isItemStyled(category, item) {
-
-    }
-
-    // TODO: get for gender, size, style
     // Todo: write some tests for this
 }
 

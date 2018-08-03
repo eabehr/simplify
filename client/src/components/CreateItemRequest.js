@@ -17,13 +17,16 @@ class CreateItemRequest extends Component {
             urgency: "standard",
             notes: "",
             category: null,
-            itemsInCategory: []
-            // category -> item -> gender&size&style
+            typeOfItem: "",
+            itemsInCategory: [],
+            attributeDropdowns: null
         };
 
         this.handleFormChange = this.handleFormChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
+        this.handleItemTypeChange = this.handleItemTypeChange.bind(this);
+        this.setItemAttributeDropdowns = this.setItemAttributeDropdowns.bind(this);
 
         this.itemOptionGenerator = new ItemOptionGenerator();
         
@@ -48,7 +51,7 @@ class CreateItemRequest extends Component {
     handleCategoryChange(event) {
         var itemTypes = this.itemOptionGenerator.getItemsInCategory(event.target.value);
         this.setState({ category: event.target.value });
-        this.setState({ itemsInCategory:  itemTypes })
+        this.setState({ itemsInCategory:  itemTypes });
     }
 
     /**
@@ -80,10 +83,83 @@ class CreateItemRequest extends Component {
             return (
                 <div>
                     <label>Item Type</label><br/>
-                    <select>
+                    <select onChange={this.handleItemTypeChange}>
                         {itemOptions}
                     </select>
                 </div>)
+        }
+    }
+
+    /**
+     * Handle change in item type
+     */
+    handleItemTypeChange(event) {
+        this.setState({ typeOfItem: event.target.value}, function () {
+            // pending state transaction booo
+            this.setItemAttributeDropdowns();
+        });
+    }
+
+    /**
+     * If item has attributes for size, style, or gender, set dropdowns for them
+     */
+    setItemAttributeDropdowns() {
+        var category = this.state.category;
+        var itemType = this.state.typeOfItem;
+        var attributes = this.itemOptionGenerator.getItemAttributes(category, itemType);
+        if (attributes) {
+            let sizeDropdown;
+            let genderDropdown;
+            let styleDropdown;
+            if (attributes.size) {
+                let sizeOptions = attributes.size.map((item) =>
+                    <option key={item}>{item}</option>
+                );
+                 
+                sizeDropdown = (
+                    <div>
+                        <label>Size</label><br/>
+                        <select>
+                            {sizeOptions}
+                        </select>
+                    </div>)
+            }
+            if (attributes.gender) {
+                let genderOptions = attributes.gender.map((item) =>
+                    <option key={item}>{item}</option>
+                );
+
+                genderDropdown = (
+                    <div>
+                        <label>Gender</label><br/>
+                        <select>
+                            {genderOptions}
+                        </select>
+                    </div>)
+            }
+            if (attributes.style) {
+                let styleOptions = attributes.style.map((item) =>
+                    <option key={item}>{item}</option>
+                );
+                styleDropdown = (
+                    <div>
+                        <label>Style</label><br/>
+                        <select>
+                            {styleOptions}
+                        </select>
+                    </div>)
+            }
+
+            let attributeOptions = (
+                <div>
+                    { sizeDropdown }
+                    { styleDropdown }
+                    { genderDropdown }
+                </div>
+            );
+
+            this.setState({ attributeDropdowns: attributeOptions });
+            // todo: remove attributes when changing to something without attributes
         }
     }
 
@@ -92,8 +168,6 @@ class CreateItemRequest extends Component {
         // Get dropdown menus
         var categoryDropdown = this.getCategoryDropdown();
         var itemsInCategoryDropdown = this.getItemTypeDropdownForCategory(this.state.category);
-
-
 
         return (
             <div className="container">
@@ -113,6 +187,9 @@ class CreateItemRequest extends Component {
                     <br/><br/>
                     { itemsInCategoryDropdown }
                     <br/><br/>
+
+                    { this.state.attributeDropdowns }
+                    <br/><br/> 
 
                     <input type="submit" value="Submit" className="btn btn-primary" />
                     <Link to={"/"} className="btn btn-primary">Cancel</Link>
