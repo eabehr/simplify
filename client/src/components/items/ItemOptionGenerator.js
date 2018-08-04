@@ -30,6 +30,7 @@ class ItemOptionGenerator {
      * Get attributes for item in category
      */
     getItemAttributes(category, item) {
+        // TODO: sizes are different depending on gender
         var itemData = this.state.allItems[category];
         // var itemsAttributes = [];
         // getting syntax errors for for each loop?

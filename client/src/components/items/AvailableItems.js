@@ -47,6 +47,10 @@ module.exports = {
             "attributes" : null
         },
         {
+            "type" : "candy/edible treats",
+            "attributes" : null
+        },
+        {
             "type" : "games",
             "attributes" : null
         }
