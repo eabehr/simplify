@@ -65,6 +65,7 @@ class CreateItemRequest extends Component {
         return (
             <div>
                 <select onChange={this.handleCategoryChange}>
+                    <option disabled selected>Select category:</option>
                     {dropdownOptions}
                 </select>
             </div>
@@ -82,8 +83,8 @@ class CreateItemRequest extends Component {
             );
             return (
                 <div>
-                    <label>Item Type</label><br/>
                     <select onChange={this.handleItemTypeChange}>
+                        <option disabled selected>Select item:</option>
                         {itemOptions}
                     </select>
                 </div>)
@@ -118,8 +119,8 @@ class CreateItemRequest extends Component {
                  
                 sizeDropdown = (
                     <div>
-                        <label>Size</label><br/>
                         <select>
+                            <option disabled selected>Select size:</option>
                             {sizeOptions}
                         </select>
                     </div>)
@@ -131,8 +132,8 @@ class CreateItemRequest extends Component {
 
                 genderDropdown = (
                     <div>
-                        <label>Gender</label><br/>
                         <select>
+                            <option disabled selected>Select gender:</option>
                             {genderOptions}
                         </select>
                     </div>)
@@ -143,8 +144,8 @@ class CreateItemRequest extends Component {
                 );
                 styleDropdown = (
                     <div>
-                        <label>Style</label><br/>
                         <select>
+                            <option disabled selected>Select style:</option>
                             {styleOptions}
                         </select>
                     </div>)
@@ -180,10 +181,8 @@ class CreateItemRequest extends Component {
                     </label>
                     <br /><br />
 
-                    <label>
-                        Item Category <br />
-                        { categoryDropdown }
-                    </label>
+                    { categoryDropdown }
+                    
                     <br/><br/>
                     { itemsInCategoryDropdown }
                     <br/><br/>
@@ -200,3 +199,8 @@ class CreateItemRequest extends Component {
 }
 
 export default CreateItemRequest;
+
+/**
+ * TODO:
+ * - some issues with the automatically selected disabled value when changing between category types
+ */
