@@ -177,7 +177,7 @@ class CreateItemRequest extends Component {
                     <br /> <br />
                     <label>
                         Client Number (required):
-                    <input required type="text" name="clientId" value={this.state.value} onChange={this.handleFormChange} className="form-control" />
+                        <input required type="text" name="clientId" onChange={this.handleFormChange} className="form-control" />
                     </label>
                     <br /><br />
                     { categoryDropdown }
@@ -188,6 +188,29 @@ class CreateItemRequest extends Component {
                     { this.state.attributeDropdowns }
                     <br/><br/> 
 
+                    <label>
+                        Urgency (optional):
+                        <br/>
+                        <select name="urgency" onChange={this.handleFormChange}>
+                            <option value="standard">standard</option>
+                            <option value="urgent">urgent</option>
+                            <option value="life-changing">life-changing</option>
+                        </select>
+                    </label>
+                    <br/><br/>
+
+                    <label>
+                        How many of this item?
+                        <input required type="number" onChange={this.handleFormChange} className="form-control" />
+                    </label>
+                    <br/><br/>
+
+                    <label>
+                        Notes (optional): <br/>
+                        <textarea name="notes" onChange={this.handleFormChange} cols="40" rows="2"/> 
+                    </label>
+
+                    <br/><br/>
                     <input type="submit" value="Submit" className="btn btn-primary" />
                     <Link to={"/"} className="btn btn-primary">Cancel</Link>
                 </form>
