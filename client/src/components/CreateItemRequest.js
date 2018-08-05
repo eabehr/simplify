@@ -50,8 +50,11 @@ class CreateItemRequest extends Component {
      */
     handleCategoryChange(event) {
         var itemTypes = this.itemOptionGenerator.getItemsInCategory(event.target.value);
-        this.setState({ category: event.target.value });
-        this.setState({ itemsInCategory:  itemTypes });
+        this.setState({ category: event.target.value, 
+                        itemsInCategory:  itemTypes }, function () {
+            // pending state transaction booo
+            this.setItemAttributeDropdowns();
+        });
     }
 
     /**
@@ -105,10 +108,16 @@ class CreateItemRequest extends Component {
      * If item has attributes for size, style, or gender, set dropdowns for them
      */
     setItemAttributeDropdowns() {
+        if (!this.state.category) {
+            return;
+        }
         var category = this.state.category;
         var itemType = this.state.typeOfItem;
         var attributes = this.itemOptionGenerator.getItemAttributes(category, itemType);
-        if (attributes) {
+        if (!attributes) {
+            // if item type has no attributes, 
+            this.setState({ attributeDropdowns: null });
+        } else {
             let sizeDropdown;
             let genderDropdown;
             let styleDropdown;
@@ -160,7 +169,6 @@ class CreateItemRequest extends Component {
             );
 
             this.setState({ attributeDropdowns: attributeOptions });
-            // todo: remove attributes when changing to something without attributes
         }
     }
 
