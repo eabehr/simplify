@@ -12,7 +12,7 @@ class CreateItemRequest extends Component {
         this.state = {
             // TODO: separate item attributes and component attributes
             clientId: "",
-            gender: "unspecified",
+            gender: "",
             items: "",
             urgency: "standard",
             notes: "",
