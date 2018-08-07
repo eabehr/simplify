@@ -181,12 +181,7 @@ class ItemRequest extends Component {
         return (
             <div className="container">
                 <form onSubmit={this.handleSubmit}>
-                    <b>New Request:</b>
-                    <br /> <br />
-                    <label>
-                        Client Number (required):
-                        <input required type="text" name="clientId" onChange={this.handleFormChange} className="form-control" />
-                    </label>
+                    <b>Select item:</b>
                     <br /><br />
                     { categoryDropdown }
                     <br/><br/>

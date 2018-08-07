@@ -42,7 +42,7 @@
               <br/><br/>
 
            
-                < ItemRequest />
+                <ItemRequest />
 
               <input type="submit" value="Submit" className="btn btn-primary"/>
               <Link to={"/"} className="btn btn-primary">Cancel</Link>

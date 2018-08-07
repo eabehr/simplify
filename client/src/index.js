@@ -17,7 +17,6 @@
             <Route exact path='/' component={App} />
             {/* Route to create a new request */}
             <Route path='/request' component={CreateRequest} />
-            <Route path='/request-items' component={ItemRequest} />
 
             {/* Route to view request list */}
             <Route path='/request-list' component={RequestList} />
