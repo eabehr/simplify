@@ -1,6 +1,7 @@
   import React, { Component } from "react";
   import {Link} from "react-router-dom";
   import RequestService from "./RequestService";
+  import ItemRequest from "./ItemRequest";
 
   /**
    * Define the form for creating a Request for items for a client
@@ -40,41 +41,8 @@
               </label>
               <br/><br/>
 
-              <label>
-                  Client Gender (optional):
-                  <br/>
-                  <select name="gender" onChange={this.handleFormChange}>
-                      <option value="unspecified">unspecified</option>
-                      <option value="male">male</option>
-                      <option value="female">female</option>
-                      <option value="nonbinary">nonbinary</option>
-                  </select>
-              </label>
-              <br/><br/>
-
-              <label>
-                  What items does your client need? (required)<br/>
-                  Please include sizes if applicable<br/>
-                  <textarea required name="items" value={this.state.value} onChange={this.handleFormChange} cols="40" rows="5"/> 
-              </label>
-              <br/><br/>
-
-              <label>
-                  Urgency (optional):
-                  <br/>
-                  <select name="urgency" onChange={this.handleFormChange}>
-                      <option value="standard">standard</option>
-                      <option value="urgent">urgent</option>
-                      <option value="life-changing">life-changing</option>
-                  </select>
-              </label>
-              <br/><br/>
-
-              <label>
-                  Notes (optional): <br/>
-                  <textarea name="notes" value={this.state.value} onChange={this.handleFormChange} cols="40" rows="2"/> 
-              </label>
-              <br/><br/>
+           
+                < ItemRequest />
 
               <input type="submit" value="Submit" className="btn btn-primary"/>
               <Link to={"/"} className="btn btn-primary">Cancel</Link>

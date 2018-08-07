@@ -6,7 +6,7 @@ import ItemOptionGenerator from "./items/ItemOptionGenerator";
 /**
  * Define the form for creating a Request for items for a client
  */
-class CreateItemRequest extends Component {
+class ItemRequest extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -227,7 +227,7 @@ class CreateItemRequest extends Component {
     }
 }
 
-export default CreateItemRequest;
+export default ItemRequest;
 
 /**
  * TODO
