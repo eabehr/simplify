@@ -10,51 +10,26 @@ class ItemRequest extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // TODO: separate item attributes and component attributes
-            clientId: "",
-            gender: "",
-            items: "",
-            urgency: "standard",
-            notes: "",
             category: null,
-            typeOfItem: "",
-            itemsInCategory: [],
-            attributeDropdowns: null
+            typeOfItem: null,
+
+            countRequested: 1,
+            urgency: "standard",
+            notes: ""
         };
 
-        this.handleFormChange = this.handleFormChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.handleItemTypeChange = this.handleItemTypeChange.bind(this);
-        this.setItemAttributeDropdowns = this.setItemAttributeDropdowns.bind(this);
+        this.getItemAttributeDropdowns = this.getItemAttributeDropdowns.bind(this);
 
         this.itemOptionGenerator = new ItemOptionGenerator();
-        
-    }
-
-    // Handle submitting of form
-    handleSubmit(event) {
-        //   event.preventDefault();
-        //   this.addRequestService.sendData(this.state);
-        //   this.props.history.push("/");
-    }
-
-    // Set values in component state every time fields of form change
-    handleFormChange(event) {
-        // this.setState({ [event.target.name]: event.target.value });
     }
 
     /** 
-     * When category selection changes, update "items in category" component
-     * state value, which dynamically populates the item type dropdown.
+     * When category selection changes, set category on component state
      */
     handleCategoryChange(event) {
-        var itemTypes = this.itemOptionGenerator.getItemsInCategory(event.target.value);
-        this.setState({ category: event.target.value, 
-                        itemsInCategory:  itemTypes }, function () {
-            // pending state transaction booo
-            this.setItemAttributeDropdowns();
-        });
+        this.setState({ category: event.target.value });
     }
 
     /**
@@ -71,6 +46,7 @@ class ItemRequest extends Component {
                 <select onChange={this.handleCategoryChange}>
                     {dropdownOptions}
                 </select>
+                <br/><br/>
             </div>
         )
     }
@@ -78,9 +54,9 @@ class ItemRequest extends Component {
     /**
      * Get UI element for a dropdown containing items within given category
      */
-    getItemTypeDropdownForCategory(category) {
+    getItemListDropdownForCategory(category) {
         if (category) {
-            let itemsInCategory = this.state.itemsInCategory;
+            let itemsInCategory = this.itemOptionGenerator.getItemsInCategory(this.state.category);
             let itemOptions = itemsInCategory.map((item) =>
                 <option key={item}>{item}</option>
             );
@@ -90,6 +66,7 @@ class ItemRequest extends Component {
                     <select onChange={this.handleItemTypeChange}>
                         {itemOptions}
                     </select>
+                    <br/><br/>
                 </div>)
         }
     }
@@ -98,25 +75,20 @@ class ItemRequest extends Component {
      * Handle change in item type
      */
     handleItemTypeChange(event) {
-        this.setState({ typeOfItem: event.target.value}, function () {
-            // pending state transaction booo
-            this.setItemAttributeDropdowns();
-        });
+        this.setState({ typeOfItem: event.target.value });
     }
 
     /**
      * If item has attributes for size, style, or gender, set dropdowns for them
      */
-    setItemAttributeDropdowns() {
-        if (!this.state.category) {
+    getItemAttributeDropdowns(category, itemType) {
+        if (!category) {
             return;
         }
-        var category = this.state.category;
-        var itemType = this.state.typeOfItem;
         var attributes = this.itemOptionGenerator.getItemAttributes(category, itemType);
         if (!attributes) {
-            // if item type has no attributes, 
-            this.setState({ attributeDropdowns: null });
+            // item type has no attributes
+            return null;
         } else {
             let sizeDropdown;
             let genderDropdown;
@@ -165,10 +137,10 @@ class ItemRequest extends Component {
                     { sizeDropdown }
                     { styleDropdown }
                     { genderDropdown }
+                    <br/>
                 </div>
             );
-
-            this.setState({ attributeDropdowns: attributeOptions });
+            return attributeOptions;
         }
     }
 
@@ -176,30 +148,28 @@ class ItemRequest extends Component {
     render() {
         // Get dropdown menus
         var categoryDropdown = this.getCategoryDropdown();
-        var itemsInCategoryDropdown = this.getItemTypeDropdownForCategory(this.state.category);
+        var itemsInCategoryDropdown = this.getItemListDropdownForCategory(this.state.category);
+        var attributeDropdowns = this.getItemAttributeDropdowns(this.state.category, this.state.typeOfItem);
 
         return (
             <div className="container">
                 <form onSubmit={this.handleSubmit}>
-                    <b>Select item:</b>
+                    <b>Add item:</b>
                     <br /><br />
                     { categoryDropdown }
-                    <br/><br/>
                     { itemsInCategoryDropdown }
-                    <br/><br/>
-
-                    { this.state.attributeDropdowns }
-                    <br/><br/> 
+                    { attributeDropdowns }
 
                     <label>
                         Urgency (optional):
-                        <br/>
-                        <select name="urgency" onChange={this.handleFormChange}>
-                            <option value="standard">standard</option>
-                            <option value="urgent">urgent</option>
-                            <option value="life-changing">life-changing</option>
-                        </select>
                     </label>
+                        <br/>
+                    <select name="urgency" onChange={this.handleFormChange}>
+                        <option value="standard">standard</option>
+                        <option value="urgent">urgent</option>
+                        <option value="life-changing">life-changing</option>
+                    </select>
+                    
                     <br/><br/>
 
                     <label>
@@ -214,8 +184,7 @@ class ItemRequest extends Component {
                     </label>
 
                     <br/><br/>
-                    <input type="submit" value="Submit" className="btn btn-primary" />
-                    <Link to={"/"} className="btn btn-primary">Cancel</Link>
+                    <input type="submit" value="Add Item" className="btn btn-primary" />
                 </form>
             </div>
         );
