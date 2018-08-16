@@ -10,6 +10,7 @@ class ItemRequest extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            // todo: nest item
             category: null,
             typeOfItem: null,
 
@@ -21,8 +22,13 @@ class ItemRequest extends Component {
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.handleItemTypeChange = this.handleItemTypeChange.bind(this);
         this.getItemAttributeDropdowns = this.getItemAttributeDropdowns.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 
         this.itemOptionGenerator = new ItemOptionGenerator();
+    }
+
+    handleSubmit() {
+        this.props.itemAdded(this.state);
     }
 
     /** 
@@ -174,7 +180,7 @@ class ItemRequest extends Component {
 
                     <label>
                         How many of this item?
-                        <input required type="number" onChange={this.handleFormChange} className="form-control" />
+                        <input type="number" onChange={this.handleFormChange} className="form-control" />
                     </label>
                     <br/><br/>
 
