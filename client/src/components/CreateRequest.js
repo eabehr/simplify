@@ -35,19 +35,18 @@ class CreateRequest extends Component {
   }
 
   handleItemAdded(item) {
+    console.log(item);
     this.setState({
       items : this.state.items.concat(item)
     }, function () {
       // how to avoid this?
-      this.setRequestedItems();
+   //   this.setRequestedItems();
     });
   }
 
   setRequestedItems() {
-
     return this.state.items.map(function(object, i){
-      return <p>hi</p>
-      // return <ItemListRow obj={object.typeOfItem} key={i} />;
+      return <ItemListRow itemAdded={object} key={i} />;
     })
   }
 
@@ -58,7 +57,6 @@ class CreateRequest extends Component {
     var requestedItems = this.setRequestedItems();
     return (
       <div className="container">
-        {/* <form onSubmit={this.handleSubmit}> */}
           Create Request:
             <br /> <br />
           <label>
@@ -69,15 +67,16 @@ class CreateRequest extends Component {
 
           <ItemRequest itemAdded={this.handleItemAdded} />
 
-          <input type="submit" value="Submit" className="btn btn-primary" />
-          <Link to={"/"} className="btn btn-primary">Cancel</Link>
-        {/* </form> */}
 
 
-
+      <h5>Items in your request:</h5>
         {/* List items to be added */}
         { requestedItems }
 
+
+
+          <input type="submit" value="Submit" className="btn btn-primary" />
+          <Link to={"/"} className="btn btn-primary">Cancel</Link>
 
       </div>
     );
