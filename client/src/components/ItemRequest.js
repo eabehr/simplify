@@ -23,8 +23,9 @@ class ItemRequest extends Component {
             style: null
         };
 
-        this.handleCategoryChange = this.handleCategoryChange.bind(this);
-        this.handleItemTypeChange = this.handleItemTypeChange.bind(this);
+        this.handleFieldChange = this.handleFieldChange.bind(this);
+
+
         this.getItemAttributeDropdowns = this.getItemAttributeDropdowns.bind(this);
         this.handleAddItem = this.handleAddItem.bind(this);
 
@@ -44,11 +45,17 @@ class ItemRequest extends Component {
 
 
         // do some validation here
-
+        if (!(this.state.category && this.state.typeOfItem)) {
+            console.log("error trying to add item without required properties");
+            return;
+        }
 
         // call function in parent
         this.props.itemAdded(this.state);
 
+
+        //  how to handle resetting form when user adds an item?
+        // should I switch back to <form> ?
         this.setState({
             // todo: nest item
             category: null, // required
@@ -62,13 +69,12 @@ class ItemRequest extends Component {
             size: null,
             style: null
         });
+
+        document.getElementById("blah").reset();
     }
 
-    /** 
-     * When category selection changes, set category on component state
-     */
-    handleCategoryChange(event) {
-        this.setState({ category: event.target.value });
+    handleFieldChange(event) {
+        this.setState({ [event.target.name] : event.target.value });
     }
 
     /**
@@ -82,7 +88,7 @@ class ItemRequest extends Component {
         return (
             <div>
                 <label>Item category:</label><br/>
-                <select id="category" onChange={this.handleCategoryChange}>
+                <select name="category" onChange={this.handleFieldChange}>
                     <option selected disabled>Select category</option>
                     {dropdownOptions}
                 </select>
@@ -103,20 +109,13 @@ class ItemRequest extends Component {
             return (
                 <div>
                     <label>Item Type</label><br/>
-                    <select id="typeOfItem" onChange={this.handleItemTypeChange}>
+                    <select name="typeOfItem" onChange={this.handleFieldChange}>
                         <option selected disabled>Select item</option>
                         {itemOptions}
                     </select>
                     <br/><br/>
                 </div>)
         }
-    }
-
-    /**
-     * Handle change in item type
-     */
-    handleItemTypeChange(event) {
-        this.setState({ typeOfItem: event.target.value });
     }
 
     /**
@@ -142,7 +141,7 @@ class ItemRequest extends Component {
                 sizeDropdown = (
                     <div>
                         <label>Size</label><br/>
-                        <select>
+                        <select name="size" onChange={this.handleFieldChange}>
                             {sizeOptions}
                         </select>
                     </div>)
@@ -155,7 +154,7 @@ class ItemRequest extends Component {
                 genderDropdown = (
                     <div>
                         <label>Gender</label><br/>
-                        <select>
+                        <select name="gender" onChange={this.handleFieldChange}>
                             {genderOptions}
                         </select>
                     </div>)
@@ -167,7 +166,7 @@ class ItemRequest extends Component {
                 styleDropdown = (
                     <div>
                         <label>Style</label><br/>
-                        <select>
+                        <select name="style" onChange={this.handleFieldChange}>
                             {styleOptions}
                         </select>
                     </div>)
@@ -194,7 +193,7 @@ class ItemRequest extends Component {
 
         return (
             <div className="container">
-                <div>
+                <form id="blah">
                     <b>Add item:</b>
                     <br /><br />
                     { categoryDropdown }
@@ -205,7 +204,7 @@ class ItemRequest extends Component {
                         Urgency (optional):
                     </label>
                         <br/>
-                    <select name="urgency" onChange={this.handleFormChange}>
+                    <select name="urgency" onChange={this.handleFieldChange}>
                         <option value="standard">standard</option>
                         <option value="urgent">urgent</option>
                         <option value="life-changing">life-changing</option>
@@ -215,20 +214,18 @@ class ItemRequest extends Component {
                     
                     <label>
                         How many of this item?
-                        <input type="number" onChange={this.handleFormChange} className="form-control" />
+                        <input name="countRequested" type="number" onChange={this.handleFieldChange} className="form-control" />
                     </label>
                     
                     {/* 
                     Commenting out for now to unclutter UI while I develop other areas
                     <br/><br/>
-                    <label>
-                        Notes (optional): <br/>
-                        <textarea name="notes" onChange={this.handleFormChange} cols="40" rows="2"/> 
-                    </label> */}
+                     */}
 
                     <br/><br/>
-                    <input type="submit" value="Add Item" className="btn btn-primary" onClick={this.handleAddItem}/>
-                </div>
+                    {/* what should type of input be? not submit */}
+                    <input value="Add Item" className="btn btn-primary" onClick={this.handleAddItem}/>
+                </form>
             </div>
         );
     }
@@ -237,11 +234,31 @@ class ItemRequest extends Component {
 export default ItemRequest;
 
 /**
+ * form or div?
+ * if input type is submit, then refreshes page
+ * if it isn't, validation doesnt work :()
+ */
+
+
+/**
  * TODO
  * 
- * Can set labal in dropdown like this, but poses some issues
+ * Can set label in dropdown like this, but poses some issues
  * <option disabled selected>Select category:</option>
  * 
  * 
  * count &urgency not getting set
  */
+
+
+
+
+
+
+ /**
+  * 
+  * react-json-schema-form
+  * dynamic schema dependencies
+  * 
+  * 
+  */

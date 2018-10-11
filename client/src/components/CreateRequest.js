@@ -10,10 +10,11 @@ import ItemListRow from "./ItemListRow";
 class CreateRequest extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-        clientId: "", 
-        items: [],
-        notes: "" };
+    this.state = {
+      clientId: "",
+      items: [],
+      notes: ""
+    };
     this.addRequestService = new RequestService();
 
     this.handleFormChange = this.handleFormChange.bind(this);
@@ -37,15 +38,15 @@ class CreateRequest extends Component {
   handleItemAdded(item) {
     console.log(item);
     this.setState({
-      items : this.state.items.concat(item)
+      items: this.state.items.concat(item)
     }, function () {
       // how to avoid this?
-   //   this.setRequestedItems();
+      //   this.setRequestedItems();
     });
   }
 
   setRequestedItems() {
-    return this.state.items.map(function(object, i){
+    return this.state.items.map(function (object, i) {
       return <ItemListRow itemAdded={object} key={i} />;
     })
   }
@@ -57,26 +58,33 @@ class CreateRequest extends Component {
     var requestedItems = this.setRequestedItems();
     return (
       <div className="container">
-          Create Request:
+        Create Request:
             <br /> <br />
-          <label>
-            Client id (required):
-                  <input required type="text" name="clientId" value={this.state.value} onChange={this.handleFormChange} className="form-control" />
-          </label>
-          <br /><br />
+        <label>
+          Client id for all items (required):
+          <input required type="text" name="clientId" value={this.state.clientId} onChange={this.handleFormChange} className="form-control" />
+        </label>
+        <br /><br />
 
-          <ItemRequest itemAdded={this.handleItemAdded} />
+        <ItemRequest itemAdded={this.handleItemAdded} />
 
+        <h5>Items in your request:</h5>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <td width="20%"><b>Category</b></td>
+              <td width="20%"><b>Type</b></td>
+              <td width="10%"><b>Count</b></td>
+              <td><b></b></td>
+            </tr>
+          </thead>
+          <tbody>
+            {requestedItems}
+          </tbody>
+        </table>
 
-
-      <h5>Items in your request:</h5>
-        {/* List items to be added */}
-        { requestedItems }
-
-
-
-          <input type="submit" value="Submit" className="btn btn-primary" />
-          <Link to={"/"} className="btn btn-primary">Cancel</Link>
+        <input type="submit" value="Submit Request" className="btn btn-primary" />
+        <Link to={"/"} className="btn btn-primary">Cancel</Link>
 
       </div>
     );

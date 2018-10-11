@@ -4,8 +4,6 @@ class ItemListRow extends Component {
     constructor(props) {
         super(props);
       //  props.itemAdded
-        console.log("blah");
-
         console.log("props: " + props.itemAdded.typeOfItem);
     }
     render() {
